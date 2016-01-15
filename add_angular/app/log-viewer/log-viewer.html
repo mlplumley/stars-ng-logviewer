@@ -1,0 +1,81 @@
+<div layout="column">
+
+    <md-content md-theme="docs-dark" layout="row" layout-padding layout-align="space-around">
+        <div layout="column">
+                <label>Web Request ID filter(s)</label>
+                <md-chips ng-model="webRequestIDs" placeholder="Enter a WebRequestID" delete-button-label="Remove ID"
+                          delete-hint="Press delete to remove ID" secondary-placeholder="+WebRequestID"></md-chips>
+        </div>
+        <div layout="column">
+                <label>Auto Refresh</label>
+                <md-switch ng-model="autoRefreshEnabled" aria-label="Auto Refresh" ng-change="adjustRefresh()">
+                    {{ autoRefreshEnabled ? 'Enabled' : 'Disabled' }}
+                </md-switch>
+        </div>
+        <div layout="column">
+                <label>Refresh Frequency</label>
+                <md-select ng-model="autoRefreshFrequency" ng-change="adjustRefresh()">
+                    <md-option ng-repeat="freq in autoRefreshFrequencies" value="{{freq.delay}}">
+                        {{freq.description}}
+                    </md-option>
+                </md-select>
+        </div>
+
+
+
+        <!--
+        <h2 class="md-title">Web Request ID Filter</h2>
+        <md-chips ng-model="webRequestIDs" placeholder="Enter a WebRequestID" delete-button-label="Remove ID" delete-hint="Press delete to remove ID" secondary-placeholder="+WebRequestID"></md-chips>
+        -->
+    </md-content>
+</div>
+<table class="table table-hover" ng-if="!$root.isMobile">
+    <thead>
+    <tr>
+        <th ng-repeat="col in colLabels"> {{ col }}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="item in logEntries" ng-click="showDetail(item)">
+        <td ng-repeat="col in colFields" ng-click="showDetail(item)">
+            {{ item[col] }}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!--
+<div ng-if="$root.isMobile">
+
+	<md-list>
+	 	<div ng-repeat="item in logEntries">
+			<md-list-item class="md-3-line" ng-click="editContact(item)">
+				<img ng-src="{{ item.image_url || altImage }}" class="md-avatar" onError="this.src='http://uxrepo.com/static/icon-sets/ionicons/png32/128/000000/ios7-contact-128-000000.png'"/>
+				<div class="md-list-item-text">
+				  	<h3>{{ item.first_name + ' ' + item.last_name }}</h3>
+				  	<h4><a ng-href="http://twitter.com/{{ item.twitter }}" ng-show="item.twitter">@{{ item.twitter }}</a></h4>
+				  	<p>{{ item.notes || '' }}</p>
+				</div>
+				<md-divider ></md-divider>
+			</md-list-item>
+		
+		</div>
+	</md-list>
+</div>
+-->
+
+<div class="text-center" ng-if="paginate.meta.count > paginate.limit" ng-show="!$root.isMobile">
+    <md-button
+            class="md-raised md-primary"
+            ng-disabled="paginate.page === 0"
+            ng-click="loadData(paginate.page-1)">
+        Previous
+    </md-button>
+    <md-button
+            class="md-raised md-primary"
+            ng-disabled="!paginate.meta.next"
+            ng-click="loadData(paginate.page+1)">
+        Next
+    </md-button>
+</div>
