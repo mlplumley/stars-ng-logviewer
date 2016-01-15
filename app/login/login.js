@@ -88,7 +88,7 @@ angular.module('login', [
 				password: $scope.password
 			}).then(function () {
 				$rootScope.isLoggedIn = true;
-				$location.path('/contacts');
+				$location.path('/welcome');
 			});
 		};
 

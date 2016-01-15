@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('log-viewer1', [
+angular.module('log-viewer2', [
 	'ngResource',
 	'ngRoute',
 	'ngMaterial',
@@ -13,10 +13,10 @@ angular.module('log-viewer1', [
 	function ($routeProvider) {
 		// Routes
 		$routeProvider
-			.when('/log-viewer1', {
+			.when('/log-viewer2', {
 		    	title    	: 'STARS Log Viewer',
-		    	templateUrl	: 'app/log-viewer1/log-viewer1.html',
-		    	controller 	: 'LogViewerCtrl1'
+		    	templateUrl	: 'app/log-viewer2/log-viewer2.html',
+		    	controller 	: 'LogViewerCtrl2'
 		    });
 	}
 ])
@@ -59,7 +59,7 @@ angular.module('log-viewer1', [
 		}
 	])
 
-.controller('LogViewerCtrl1', [
+.controller('LogViewerCtrl2', [
 	'$scope', 'LogEntries', 'LogLevelAPI', '$location', '$route', '$mdToast', '$q', '$filter', '$interval',
 
 	function ($scope, LogEntries, LogLevelAPI, $location, $route, $mdToast, $q, $filter, $interval) {

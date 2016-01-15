@@ -6,7 +6,9 @@ angular.module('stars-log-viewer', [
 	'ngMaterial',
 	'ngCookies',
 	'login',
-	'log-viewer1'
+	'log-viewer1',
+    'log-viewer2',
+    'ui.grid'
 ])
 .constant('INSTANCE_URL', 'http://resricnav')
 .constant('APP_API_KEY', '1857cd18d9cba1baf2b25c571c26b3a69375113d0e93d64c1e21f14f60d70171')
@@ -38,7 +40,7 @@ angular.module('stars-log-viewer', [
 	function ($routeProvider, $httpProvider, APP_API_KEY, $mdThemingProvider) {
 		$routeProvider
 		    .otherwise({
-		      redirectTo:'/contacts'
+		      redirectTo:'/welcome'
 		    });
 		$httpProvider.interceptors.push('httpInterceptor');
 		// Configure the theme of the whole app
